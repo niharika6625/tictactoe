@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  //decorator: this class will be treated like an component
   selector: 'app-home',
-  //standalone: true,
-  //imports: [],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   gameBoard: string[] = ['', '', '', '', '', '', '', '', ''];
   isXTurn: boolean = true;
   winner: string = '';
-  xWins: number = 0; 
-  oWins: number = 0; 
+  xWins: number = 0;
+  oWins: number = 0;
+  draws: number = 0;
   history: string[] = [];
   winningTiles: number[] = [];
 
@@ -25,28 +23,29 @@ export class HomeComponent implements OnInit {
     if (this.gameBoard[index]) {
       return; // If the tile is already occupied, exit the function
     }
+
     const player = this.isXTurn ? 'X' : 'O';
     this.isXTurn = !this.isXTurn; // Toggle the turn for the next player
-
     this.gameBoard[index] = player;
 
-  // Play the respective sound based on the player's mark
-  this.playClickSound(player);
+    // Play the respective sound based on the player's mark
+    this.playClickSound(player);
+
     this.winner = this.checkWin();
     if (this.winner) {
-        this.updateHistory(this.winner);
+      this.updateHistory(this.winner);
 
-        if (this.winner === 'X') {
-            this.xWins += 1; 
-
-          } else if (this.winner === 'O') {
-            this.oWins += 1;
-          }
-          this.winner = `${this.winner} wins!`;
-      } else if (this.gameBoard.every(item => item)) {
-        this.winner = 'Game is a draw!';
-        this.updateHistory('Draw');
+      if (this.winner === 'X') {
+        this.xWins += 1;
+      } else if (this.winner === 'O') {
+        this.oWins += 1;
       }
+      this.winner = `${this.winner} wins!`;
+    } else if (this.gameBoard.every(item => item)) {
+      this.winner = 'Game is a draw!';
+      this.draws += 1; // Track number of draws
+      this.updateHistory('Draw');
+    }
   }
 
   checkWin(): string {
@@ -69,11 +68,12 @@ export class HomeComponent implements OnInit {
         this.gameBoard[a] === this.gameBoard[b] &&
         this.gameBoard[a] === this.gameBoard[c]
       ) {
-        this.winningTiles = pattern;
+        this.winningTiles = pattern; // Highlight the winning tiles
         return this.gameBoard[a];
       }
     }
-    this.winningTiles =[];
+
+    this.winningTiles = []; // Clear the winning tiles if no win
     return '';
   }
 
@@ -97,6 +97,7 @@ export class HomeComponent implements OnInit {
   clearHistory() {
     this.xWins = 0;
     this.oWins = 0;
+    this.draws = 0; // Reset draws when clearing history
     this.history = [];
   }
 
@@ -104,12 +105,12 @@ export class HomeComponent implements OnInit {
     const audio = new Audio();
 
     if (player === 'X') {
-
       audio.src = 'assets/tic-tac-toe/sounds/click-sound-x.mp3';
     } else {
       audio.src = 'assets/tic-tac-toe/sounds/click-sound-o.mp3';
     }
-    audio.load();  
-    audio.play(); 
+
+    audio.load();
+    audio.play();
   }
 }
