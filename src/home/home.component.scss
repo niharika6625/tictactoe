@@ -1,0 +1,86 @@
+.ticTacToeWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.title {
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.gameTileWrap {
+    width: 300px;
+}
+
+.grid {
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border: 2px solid #333;
+}
+
+.tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #333;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.tile:hover {
+    background-color: #f1f1f1;
+}
+
+.tile:active {
+    background-color: #ddd;
+}
+
+.winnerDisplay {
+    font-size: 24px;
+    color: green;
+    text-align: center;
+    animation: winnerAnimation 1s ease-out;
+  }
+  
+  @keyframes winnerAnimation {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .highlight {
+    animation: subtlePulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes subtlePulse {
+    0% {
+      transform: scale(1);
+      background-color: lightgray;
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      background-color: lightblue;
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1);
+      background-color: lightgray;
+      opacity: 1;
+    }
+  }
+  

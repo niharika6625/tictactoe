@@ -1,0 +1,39 @@
+<div class="ticTacToeWrap">
+    <h1 class="title">Tic-Tac-Toe</h1>
+    <div *ngIf="winner" class="winnerDisplay">
+      {{ winner }}
+    </div>
+    <div>
+      <button (click)="handleReset()">Restart Game</button>
+    </div>
+    <div class="gameTileWrap">
+      <mat-grid-list cols="3" rowHeight="1:1" class="grid">
+        <mat-grid-tile
+          class="tile"
+          *ngFor="let item of gameBoard; let i = index"
+          [ngClass]="{'highlight': winningTiles.includes(i)}"
+          (click)="handleTileClick(i)"
+          >{{ item }}</mat-grid-tile
+        >
+      </mat-grid-list>
+    </div>
+  
+    <div class="winStats">
+      <p>X Wins: {{xWins}}</p>
+      <p>O Wins: {{oWins}}</p>
+    </div>
+  
+  
+    <div class="history">
+      <h4>Game History</h4>
+      <ul>
+        <li *ngFor="let entry of history">{{entry}}</li>
+      </ul>
+    </div>
+  
+  
+    <div>
+      <button (click)="clearHistory()">Clear History</button>
+    </div>
+  </div>
+  
