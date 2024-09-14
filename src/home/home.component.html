@@ -1,7 +1,10 @@
 <div class="ticTacToeWrap">
   <h1 class="title">Tic-Tac-Toe</h1>
   <div class="mainContainer">
-    <div class="gameTileWrap">
+    <div class="gameWrap">
+      <div *ngIf="winner" class="winnerDisplay">
+        {{ winner }}
+      </div>
       <mat-grid-list cols="3" class="grid">
         <mat-grid-tile
           class="tile"
@@ -14,9 +17,7 @@
       </mat-grid-list>
 
       <div class="buttonContainer">
-        <button (click)="handleReset()" class="resetButton">
-          Restart Game
-        </button>
+        <button (click)="handleReset()" class="button">Restart Game</button>
       </div>
     </div>
 
@@ -27,9 +28,7 @@
       <p>Draws: {{ draws }}</p>
 
       <div class="buttonContainer">
-        <button (click)="clearHistory()" class="historyButton">
-          Clear score
-        </button>
+        <button (click)="clearHistory()" class="button">Clear score</button>
       </div>
     </div>
   </div>

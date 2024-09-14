@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   gameBoard: string[] = ['', '', '', '', '', '', '', '', ''];
   isXTurn: boolean = true;
   winner: string = '';
@@ -14,13 +14,16 @@ export class HomeComponent implements OnInit {
   draws: number = 0;
   history: string[] = [];
   winningTiles: number[] = [];
+  audioO: HTMLAudioElement;
+  audioX: HTMLAudioElement;
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  constructor() {
+    this.audioX = new Audio('assets/sound/clickSoundX.mp3');
+    this.audioO = new Audio('assets/sound/clickSoundO.mp3');
+  }
 
   handleTileClick(index: any) {
-    if (this.gameBoard[index]) {
+    if (this.gameBoard[index] || this.winner) {
       return; // If the tile is already occupied, exit the function
     }
 
@@ -102,15 +105,10 @@ export class HomeComponent implements OnInit {
   }
 
   playClickSound(player: string) {
-    const audio = new Audio();
-
-    if (player === 'X') {
-      audio.src = 'assets/tic-tac-toe/sounds/click-sound-x.mp3';
+    if(player === 'X'){
+      this.audioX.play();
     } else {
-      audio.src = 'assets/tic-tac-toe/sounds/click-sound-o.mp3';
+      this.audioO.play();
     }
-
-    audio.load();
-    audio.play();
   }
 }

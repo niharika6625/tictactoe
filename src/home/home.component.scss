@@ -18,13 +18,13 @@
   display: flex;
   justify-content: space-between;
   width: 80%;
-  max-width: 900px;
+  max-width: 800px;
   margin-top: 20px;
 }
 
-.gameTileWrap {
+.gameWrap {
   width: 50%;
-  padding: 15px;
+  //padding: 15px;
 }
 
 .grid {
@@ -40,7 +40,7 @@
   align-items: center;
   font-size: 2rem;
   color: #333;
-  border: 1px solid #ddd;
+  border: 0.2px solid #ddd;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
@@ -58,26 +58,27 @@
   text-align: center;
 }
 
-.resetButton, .historyButton {
+.button {
   padding: 10px 20px;
   font-size: 1rem;
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 
-.resetButton:hover, .historyButton:hover {
+.button:hover {
   background-color: #45a049;
 }
 
 .scoreSection {
   width: 30%;
   background-color: #fafafa;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1.5px solid black;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -97,7 +98,7 @@
 }
 
 .winnerDisplay {
-  font-size: 24px;
+  font-size: 35px;
   color: green;
   text-align: center;
   animation: winnerAnimation 1s ease-out;
