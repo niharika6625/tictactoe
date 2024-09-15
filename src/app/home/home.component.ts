@@ -17,6 +17,7 @@ export class HomeComponent {
   audioO: HTMLAudioElement;
   audioX: HTMLAudioElement;
   audioWin: HTMLAudioElement;
+  selectedTileIndex: number | null = null;
 
   constructor() {
     this.audioX = new Audio('assets/sound/clickSoundX.mp3');
@@ -32,6 +33,7 @@ export class HomeComponent {
     const player = this.isXTurn ? 'X' : 'O';
     this.isXTurn = !this.isXTurn; // Toggle the turn for the next player
     this.gameBoard[index] = player;
+    this.selectedTileIndex = index;
 
     this.playClickSound(player);
 
@@ -87,6 +89,7 @@ export class HomeComponent {
     this.gameBoard = ['', '', '', '', '', '', '', '', ''];
     this.isXTurn = true;
     this.winningTiles = [];
+    this.selectedTileIndex = null;
   }
 
   updateHistory(result: string) {

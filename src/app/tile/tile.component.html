@@ -1,0 +1,7 @@
+<div
+    class="tile"
+    [ngClass]="{ 'selectedWrap': selectedTileIndex === index, 'highlight': isWinningTile }"
+    (click)="onTileClick()"
+>
+    {{ value }}
+</div>

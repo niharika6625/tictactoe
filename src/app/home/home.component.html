@@ -9,10 +9,14 @@
         <mat-grid-tile
           class="tile"
           *ngFor="let item of gameBoard; let i = index"
-          [ngClass]="{ highlight: winningTiles.includes(i) }"
-          (click)="handleTileClick(i)"
         >
-          {{ item }}
+          <app-tile
+            [selectedTileIndex]="selectedTileIndex"
+            [value]="item"
+            [index]="i"
+            [isWinningTile]="winningTiles.includes(i)"
+            (tileClick)="handleTileClick($event)"
+          ></app-tile>
         </mat-grid-tile>
       </mat-grid-list>
 
@@ -23,9 +27,7 @@
 
     <div class="scoreSection">
       <div class="infoContainer">
-        <button (click)="showInfo()" class="infoButton">
-          About Game
-        </button>
+        <button (click)="showInfo()" class="infoButton">About Game</button>
       </div>
       <h2>Score</h2>
       <p>X Wins: {{ xWins }}</p>

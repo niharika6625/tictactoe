@@ -1,0 +1,42 @@
+.tile {
+    min-width: 7rem;
+    min-height: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #333;
+    border: 0.2px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.tile:hover {
+    background-color: #f1f1f1;
+}
+
+.selectedWrap {
+    background-color: #ddd;
+}
+
+.highlight {
+    animation: subtlePulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes subtlePulse {
+    0% {
+      transform: scale(1);
+      background-color: lightgray;
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      background-color: lightblue;
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1);
+      background-color: lightgray;
+      opacity: 1;
+    }
+}
