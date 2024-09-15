@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Game Information</h1>
+<div mat-dialog-content>
+  <p><strong>Rules:</strong></p>
+  <ul>
+    <li>Players take turns to place X or O on the grid.</li>
+    <li>First to align three marks horizontally, vertically, or diagonally wins.</li>
+    <li>If all tiles are filled and there's no winner, the game is a draw.</li>
+  </ul>
+
+  <p><strong>Features:</strong></p>
+  <ul>
+    <li>Sound effects for each player's move.</li>
+    <li>Winner sound and visual highlight for winning tiles.</li>
+    <li>Score tracking and result history (X wins, O wins, Draws).</li>
+    <li>Reset game and clear history features.</li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
+</div>
+

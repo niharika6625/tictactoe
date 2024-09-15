@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +20,7 @@ export class HomeComponent {
   audioX: HTMLAudioElement;
   audioWin: HTMLAudioElement;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.audioX = new Audio('assets/sound/clickSoundX.mp3');
     this.audioO = new Audio('assets/sound/clickSoundO.mp3');
     this.audioWin = new Audio ('assets/sound/winnerSound.mp3');
@@ -118,21 +120,28 @@ export class HomeComponent {
     this.audioWin.play(); // Play the winning sound
   }
 
-  showInfo() {
-    alert(`
-      Game Rules:
-      1. The game is played on a 3x3 grid.
-      2. Players take turns placing their mark (X or O) in an empty square.
-      3. Game always starts with player X.
-      4. The first player to get three of their marks in a row (horizontally, vertically, or diagonally) wins.
-      5. If all 9 squares are filled and no player has three in a row, the game is declared a draw.
+  // showInfo() {
+  //   alert(`
+  //     Game Rules:
+  //     1. The game is played on a 3x3 grid.
+  //     2. Players take turns placing their mark (X or O) in an empty square.
+  //     3. Game always starts with player X.
+  //     4. The first player to get three of their marks in a row (horizontally, vertically, or diagonally) wins.
+  //     5. If all 9 squares are filled and no player has three in a row, the game is declared a draw.
   
-      Features added:
-      - A sound plays when a player places X or O.
-      - A winner sound is played when the game is won.
-      - Visual highlighting for winning tiles.
-      - The game keeps track of wins for both players and draws.
-      - Option to reset the game and clear the score history.
-    `);
+  //     Features added:
+  //     - A sound plays when a player places X or O.
+  //     - A winner sound is played when the game is won.
+  //     - Visual highlighting for winning tiles.
+  //     - The game keeps track of wins for both players and draws.
+  //     - Option to reset the game and clear the score history.
+  //   `);
+  // }
+
+  showInfo() {
+    this.dialog.open(InfoDialogComponent, {
+      width: '400px',
+      height: 'auto',
+    });
   }
 }
