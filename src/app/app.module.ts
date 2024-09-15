@@ -8,18 +8,19 @@ import { HomeComponent } from './home/home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { TileComponent } from './tile/tile.component';
-
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 @NgModule({
-    imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, MatGridListModule],
+    imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, MatGridListModule, MatDialogModule ],
     declarations: [
         AppComponent, 
         HomeComponent,
-        TileComponent
+        TileComponent,
+        InfoDialogComponent
     ],
     bootstrap: [AppComponent],
     providers: [
-      provideAnimationsAsync()
+      provideAnimationsAsync(),
     ]
 })
 

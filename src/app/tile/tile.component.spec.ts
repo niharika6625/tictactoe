@@ -8,7 +8,7 @@ describe('TileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TileComponent]
+      declarations: [TileComponent]
     })
     .compileComponents();
 

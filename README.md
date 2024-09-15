@@ -1,4 +1,9 @@
 # tictactoe
+Step1: Checkout on 'dev' branch.
+Step2: On the terminal, use npm install.
+Step3: Start the project using 'npm run start'.
+
+Node version 18 required to run the project.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
 

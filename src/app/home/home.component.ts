@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { InfoDialogComponent } from '../info-dialog/info-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +21,7 @@ export class HomeComponent {
   audioWin: HTMLAudioElement;
   selectedTileIndex: number | null = null;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.audioX = new Audio('assets/sound/clickSoundX.mp3');
     this.audioO = new Audio('assets/sound/clickSoundO.mp3');
     this.audioWin = new Audio ('assets/sound/winnerSound.mp3');
@@ -31,7 +33,7 @@ export class HomeComponent {
     }
 
     const player = this.isXTurn ? 'X' : 'O';
-    this.isXTurn = !this.isXTurn; // Toggle the turn for the next player
+    this.isXTurn = !this.isXTurn;
     this.gameBoard[index] = player;
     this.selectedTileIndex = index;
 
@@ -50,7 +52,7 @@ export class HomeComponent {
       this.winner = `${this.winner} wins!`;
     } else if (this.gameBoard.every(item => item)) {
       this.winner = 'Game is a draw!';
-      this.draws += 1; // Track number of draws
+      this.draws += 1;
       this.updateHistory('Draw');
     }
   }
@@ -75,12 +77,12 @@ export class HomeComponent {
         this.gameBoard[a] === this.gameBoard[b] &&
         this.gameBoard[a] === this.gameBoard[c]
       ) {
-        this.winningTiles = pattern; // Highlight the winning tiles
+        this.winningTiles = pattern;
         return this.gameBoard[a];
       }
     }
 
-    this.winningTiles = []; // Clear the winning tiles if no win
+    this.winningTiles = [];
     return '';
   }
 
@@ -105,7 +107,7 @@ export class HomeComponent {
   clearHistory() {
     this.xWins = 0;
     this.oWins = 0;
-    this.draws = 0; // Reset draws when clearing history
+    this.draws = 0;
     this.history = [];
   }
 
@@ -118,24 +120,14 @@ export class HomeComponent {
   }
 
   playWinSound() {
-    this.audioWin.play(); // Play the winning sound
+    this.audioWin.play();
   }
 
   showInfo() {
-    alert(`
-      Game Rules:
-      1. The game is played on a 3x3 grid.
-      2. Players take turns placing their mark (X or O) in an empty square.
-      3. Game always starts with player X.
-      4. The first player to get three of their marks in a row (horizontally, vertically, or diagonally) wins.
-      5. If all 9 squares are filled and no player has three in a row, the game is declared a draw.
-  
-      Features added:
-      - A sound plays when a player places X or O.
-      - A winner sound is played when the game is won.
-      - Visual highlighting for winning tiles.
-      - The game keeps track of wins for both players and draws.
-      - Option to reset the game and clear the score history.
-    `);
+    if (this.dialog.openDialogs.length === 0) {
+    this.dialog.open(InfoDialogComponent, {
+      width: '400px',
+      height: 'auto',
+    });}
   }
 }
