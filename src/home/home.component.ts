@@ -16,26 +16,28 @@ export class HomeComponent {
   winningTiles: number[] = [];
   audioO: HTMLAudioElement;
   audioX: HTMLAudioElement;
+  audioWin: HTMLAudioElement;
 
   constructor() {
     this.audioX = new Audio('assets/sound/clickSoundX.mp3');
     this.audioO = new Audio('assets/sound/clickSoundO.mp3');
+    this.audioWin = new Audio ('assets/sound/winnerSound.mp3');
   }
 
   handleTileClick(index: any) {
     if (this.gameBoard[index] || this.winner) {
-      return; // If the tile is already occupied, exit the function
+      return;
     }
 
     const player = this.isXTurn ? 'X' : 'O';
     this.isXTurn = !this.isXTurn; // Toggle the turn for the next player
     this.gameBoard[index] = player;
 
-    // Play the respective sound based on the player's mark
     this.playClickSound(player);
 
     this.winner = this.checkWin();
     if (this.winner) {
+      this.playWinSound();
       this.updateHistory(this.winner);
 
       if (this.winner === 'X') {
@@ -110,5 +112,27 @@ export class HomeComponent {
     } else {
       this.audioO.play();
     }
+  }
+
+  playWinSound() {
+    this.audioWin.play(); // Play the winning sound
+  }
+
+  showInfo() {
+    alert(`
+      Game Rules:
+      1. The game is played on a 3x3 grid.
+      2. Players take turns placing their mark (X or O) in an empty square.
+      3. Game always starts with player X.
+      4. The first player to get three of their marks in a row (horizontally, vertically, or diagonally) wins.
+      5. If all 9 squares are filled and no player has three in a row, the game is declared a draw.
+  
+      Features added:
+      - A sound plays when a player places X or O.
+      - A winner sound is played when the game is won.
+      - Visual highlighting for winning tiles.
+      - The game keeps track of wins for both players and draws.
+      - Option to reset the game and clear the score history.
+    `);
   }
 }

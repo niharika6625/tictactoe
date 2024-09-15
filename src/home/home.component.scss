@@ -74,6 +74,26 @@
   background-color: #45a049;
 }
 
+.infoContainer {
+  margin: 20px;
+  justify-content: flex-end;
+}
+
+.infoButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.infoButton:hover {
+  background-color: #1976D2;
+}
+
 .scoreSection {
   width: 30%;
   background-color: #fafafa;
