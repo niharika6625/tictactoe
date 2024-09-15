@@ -1,5 +1,8 @@
 <div mat-dialog-title>
-  <h3>Game Information & Features</h3>
+  <button mat-raised-button (click)="close()" style="float: right; margin-top: 15px;" class="close-button">
+    Close
+  </button>
+  <h4>Game Information & Features</h4>
 </div>
 <div mat-dialog-content>
   <p><strong>Rules:</strong></p>
@@ -18,7 +21,5 @@
     <li>Restart game and clear score features.</li>
   </ul>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="close()">Close</button>
-</div>
+
 
